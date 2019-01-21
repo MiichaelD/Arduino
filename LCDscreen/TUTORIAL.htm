@@ -1,0 +1,484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb"><head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="Dave, Auld, Dave-Auld, PPSGen, CasePrinter, ArtistDIRMaker, PCDJ, Computer, Visual, Basic, Microsoft, Joomla, Audio, Streaming, NAS, QNAP">
+  <meta name="title" content="Arduino Example #7 - Digital Out - LCD Display">
+  <meta name="author" content="dave.auld">
+  <meta name="description" content="Dave-Auld.net - My contribution to the net.">
+  <meta name="generator" content="Joomla! 1.5 - Open Source Content Management">
+  <title>Arduino Example #7 - Digital Out - LCD Display</title>
+  <link href="http://www.dave-auld.net/index.php?option=com_jcomments&amp;task=rss&amp;object_id=95&amp;object_group=com_content&amp;tmpl=component" rel="alternate" type="application/rss+xml" title="Arduino Example #7 - Digital Out - LCD Display">
+  <link href="http://www.dave-auld.net/templates/rhuk_milkyway_v17_dma_v1/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link rel="stylesheet" href="TUTORIAL_files/jceutilities-217.css" type="text/css">
+  <link rel="stylesheet" href="TUTORIAL_files/style_003.css" type="text/css">
+  <link rel="stylesheet" href="TUTORIAL_files/style_002.css" type="text/css">
+  <link rel="stylesheet" href="TUTORIAL_files/modal.css" type="text/css">
+  <link rel="stylesheet" href="TUTORIAL_files/style.css" type="text/css">
+  <script type="text/javascript" src="TUTORIAL_files/mediaobject.js"></script>
+  <script type="text/javascript" src="TUTORIAL_files/jquery-126.js"></script>
+  <script type="text/javascript" src="TUTORIAL_files/jceutilities-217.js"></script>
+  <script type="text/javascript" src="TUTORIAL_files/jcomments-v2.js"></script>
+  <script type="text/javascript" src="TUTORIAL_files/ajax.js"></script>
+  <script type="text/javascript" src="TUTORIAL_files/mootools.js"></script>
+  <script type="text/javascript" src="TUTORIAL_files/caption.js"></script>
+  <script type="text/javascript" src="TUTORIAL_files/modal.js"></script>
+  <script type="text/javascript">
+	MediaObject.init({'flash':"9,0,124,0",'windowmedia':"5,1,52,701",'quicktime':"6,0,2,0",'realmedia':"7,0,0,0",'shockwave':"8,5,1,0"});jQuery(document).ready(function(){jceutilities({'popup':{'legacy':0,'resize':1,'icons':1,'overlay':1,'overlayopacity':0.8,'overlaycolor':"#000000",'fadespeed':500,'scalespeed':500,'width':640,'height':480,'hideobjects':1,'scrollpopup':1,'theme':"standard",'themecustom':"",'themepath':"plugins/system/jceutilities/themes"},'tootlip':{'classname':"tooltip",'opacity':1,'speed':150,'position':"br",'offsets':"{'x': 16, 'y': 16}"},'imgpath':"plugins/system/jceutilities/img",'pngfix':1,'wmode':0});});
+		window.addEvent('domready', function() {
+
+			SqueezeBox.initialize({});
+
+			$$('a.modal').each(function(el) {
+				el.addEvent('click', function(e) {
+					new Event(e).stop();
+					SqueezeBox.fromElement(el);
+				});
+			});
+		});
+  </script>
+  <link type="text/css" rel="stylesheet" href="TUTORIAL_files/shCore.css">
+<link type="text/css" rel="stylesheet" href="TUTORIAL_files/shThemeDefault.css">
+<script type="text/javascript" src="TUTORIAL_files/shCore.js"></script>
+  <script type="text/javascript" src="TUTORIAL_files/shBrushCpp.js"></script>
+
+
+<link rel="stylesheet" href="TUTORIAL_files/system.css" type="text/css">
+<link rel="stylesheet" href="TUTORIAL_files/general.css" type="text/css">
+<link rel="stylesheet" href="TUTORIAL_files/template.css" type="text/css">
+<link rel="stylesheet" href="TUTORIAL_files/white.css" type="text/css">
+<link rel="stylesheet" href="TUTORIAL_files/white_bg.css" type="text/css">
+<!--[if lte IE 6]>
+<link href="/templates/rhuk_milkyway_v17_dma_v1/css/ieonly.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+</head>
+<body id="page_bg" class="color_white bg_white width_fluid">
+<a name="up" id="up"></a>
+<div class="center" align="center">
+	<div id="wrapper">
+		<div id="wrapper_r">
+			<div id="header">
+				<div id="header_l">
+					<div id="header_r">
+						<div id="logo"></div>
+						<div class="bannergroup">
+
+<div class="banneritem"><a href="http://www.dave-auld.net/index.php?option=com_banners&amp;task=click&amp;bid=9" target="_blank"><img class="qyfuoiceywvhymeeatan" src="TUTORIAL_files/codeproject468x60.gif" alt="Banner"></a><div class="clr"></div>
+	</div>
+
+</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="tabarea">
+				<div id="tabarea_l">
+					<div id="tabarea_r">
+						<div id="tabmenu">
+						<table class="pill" cellpadding="0" cellspacing="0">
+							<tbody><tr>
+								<td class="pill_l">&nbsp;</td>
+								<td class="pill_m">
+								<div id="pillmenu">
+									<ul id="mainlevel-nav"><li><a href="http://www.dave-auld.net/" class="mainlevel-nav">Home</a></li><li><a href="http://www.dave-auld.net/index.php?option=com_content&amp;view=section&amp;layout=blog&amp;id=1&amp;Itemid=18" class="mainlevel-nav">Site News</a></li><li><a href="http://www.dave-auld.net/index.php?option=com_phocadownload&amp;view=sections&amp;Itemid=65" class="mainlevel-nav">Downloads</a></li><li><a href="http://www.dave-auld.net/index.php?option=com_phocaguestbook&amp;view=phocaguestbook&amp;id=1&amp;Itemid=62" class="mainlevel-nav">Guestbook</a></li></ul>
+								</div>
+								</td>
+								<td class="pill_r">&nbsp;</td>
+							</tr>
+							</tbody></table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="search">
+				<form action="index.php" method="post">
+	<div class="search">
+		<input name="searchword" id="mod_search_searchword" maxlength="20" alt="Search" class="inputbox" size="20" value="search..." onblur="if(this.value=='') this.value='search...';" onfocus="if(this.value=='search...') this.value='';" type="text">	</div>
+	<input name="task" value="search" type="hidden">
+	<input name="option" value="com_search" type="hidden">
+	<input name="Itemid" value="107" type="hidden">
+</form>
+			</div>
+
+			<div id="pathway">
+				<span class="breadcrumbs pathway">
+<a href="http://www.dave-auld.net/" class="pathway">Home</a> <img src="TUTORIAL_files/arrow.png" alt=""> <a href="http://www.dave-auld.net/index.php?option=com_content&amp;view=section&amp;id=12&amp;Itemid=107" class="pathway">Arduino Platform</a> <img src="TUTORIAL_files/arrow.png" alt=""> <a href="http://www.dave-auld.net/index.php?view=category&amp;id=53%3Aarduino-input-output-basics&amp;option=com_content&amp;Itemid=107" class="pathway">Arduino - Input / Output Basics</a> <img src="TUTORIAL_files/arrow.png" alt=""> Arduino Example #7 - Digital Out - LCD Display</span>
+
+			</div>
+
+			<div class="clr"></div>
+
+			<div id="whitebox">
+				<div id="whitebox_t">
+					<div id="whitebox_tl">
+						<div id="whitebox_tr"></div>
+					</div>
+				</div>
+
+				<div id="whitebox_m">
+					<div id="area">
+									
+
+						<div id="leftcolumn">
+															<div class="module_menu">
+			<div>
+				<div>
+					<div>
+													<h3>Main Menu</h3>
+											<ul class="menu"><li class="item1"><a href="http://www.dave-auld.net/"><span>Home</span></a></li><li class="item68"><a href="http://www.dave-auld.net/index.php?option=com_content&amp;view=section&amp;id=9&amp;Itemid=68"><span>Computing</span></a></li><li id="current" class="active item107"><a href="http://www.dave-auld.net/index.php?option=com_content&amp;view=section&amp;id=12&amp;Itemid=107"><span>Arduino Platform</span></a></li><li class="item85"><a href="http://www.dave-auld.net/index.php?option=com_content&amp;view=section&amp;id=11&amp;Itemid=85"><span>Renewable Energy Projects</span></a></li><li class="item73"><a href="http://www.dave-auld.net/index.php?option=com_content&amp;view=category&amp;id=48&amp;Itemid=73"><span>Miscellaneous</span></a></li><li class="item63"><a href="http://www.dave-auld.net/index.php?option=com_phocaguestbook&amp;view=phocaguestbook&amp;id=1&amp;Itemid=63"><span>Guestbook</span></a></li><li class="item77"><a href="http://www.dave-auld.net/index.php?option=com_alfcontact&amp;Itemid=77"><span>Contact Me</span></a></li><li class="item109"><a href="http://www.dave-auld.net/index.php?option=com_newsfeeds&amp;view=category&amp;id=57&amp;Itemid=109"><span>External News Feeds and Blogs</span></a></li></ul>					</div>
+				</div>
+			</div>
+		</div>
+			<div class="module_menu">
+			<div>
+				<div>
+					<div>
+													<h3>Site Published Software</h3>
+											<ul class="menu"><li class="parent item54"><a href="http://www.dave-auld.net/index.php?option=com_content&amp;view=article&amp;id=51&amp;Itemid=54"><span>Introduction</span></a><ul><li class="item111"><a href="http://www.dave-auld.net/index.php?option=com_content&amp;view=article&amp;id=122&amp;Itemid=111"><span>GadgetPacker Utility</span></a></li><li class="item110"><a href="http://www.dave-auld.net/index.php?option=com_content&amp;view=article&amp;id=117&amp;Itemid=110"><span>CPRepWatcher</span></a></li><li class="item59"><a href="http://www.dave-auld.net/index.php?option=com_content&amp;view=article&amp;id=49&amp;Itemid=59"><span>PPSGen</span></a></li><li class="item57"><a href="http://www.dave-auld.net/index.php?option=com_content&amp;view=article&amp;id=60&amp;Itemid=57"><span>CasePrinter</span></a></li><li class="item58"><a href="http://www.dave-auld.net/index.php?option=com_content&amp;view=article&amp;id=48&amp;Itemid=58"><span>ArtistDIRMaker</span></a></li></ul></li><li class="item64"><a href="http://www.dave-auld.net/index.php?option=com_phocadownload&amp;view=sections&amp;Itemid=64"><span>Downloads</span></a></li></ul>					</div>
+				</div>
+			</div>
+		</div>
+			<div class="module_menu">
+			<div>
+				<div>
+					<div>
+													<h3>Find Me On</h3>
+											<ul class="menu"><li class="item103"><a href="http://www.facebook.com/dave.m.auld/" target="_blank"><span>FaceBook</span></a></li><li class="item102"><a href="http://www.twitter.com/daveauld/" target="_blank"><span>Twitter</span></a></li><li class="item106"><a href="http://www.linkedin.com/in/daveauld" target="_blank"><span>LinkedIn</span></a></li></ul>					</div>
+				</div>
+			</div>
+		</div>
+			<div class="module">
+			<div>
+				<div>
+					<div>
+													<h3>Polls</h3>
+											<form action="index.php" method="post" name="form2">
+
+<table class="poll" align="center" border="0" cellpadding="1" cellspacing="0" width="95%">
+<thead>
+	<tr>
+		<td style="font-weight: bold;">
+			Do you like the new website?		</td>
+	</tr>
+</thead>
+	<tbody><tr>
+		<td align="center">
+			<table class="pollstableborder" border="0" cellpadding="0" cellspacing="0">
+							<tbody><tr>
+					<td class="sectiontableentry2" valign="top">
+						<input name="voteid" id="voteid25" value="25" alt="25" type="radio">
+					</td>
+					<td class="sectiontableentry2" valign="top">
+						<label for="voteid25">
+							Yes						</label>
+					</td>
+				</tr>
+											<tr>
+					<td class="sectiontableentry1" valign="top">
+						<input name="voteid" id="voteid26" value="26" alt="26" type="radio">
+					</td>
+					<td class="sectiontableentry1" valign="top">
+						<label for="voteid26">
+							It has potential!						</label>
+					</td>
+				</tr>
+											<tr>
+					<td class="sectiontableentry2" valign="top">
+						<input name="voteid" id="voteid27" value="27" alt="27" type="radio">
+					</td>
+					<td class="sectiontableentry2" valign="top">
+						<label for="voteid27">
+							No						</label>
+					</td>
+				</tr>
+										</tbody></table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div align="center">
+				<input name="task_button" class="button" value="Vote" type="submit">
+				&nbsp;
+				<input name="option" class="button" value="Results" onclick="document.location.href='/index.php?option=com_poll&amp;id=16:poll-like-site'" type="button">
+			</div>
+		</td>
+	</tr>
+</tbody></table>
+
+	<input name="option" value="com_poll" type="hidden">
+	<input name="task" value="vote" type="hidden">
+	<input name="id" value="16" type="hidden">
+	<input name="84c68572e7c9945b8b598ffa1ae82706" value="1" type="hidden"></form>					</div>
+				</div>
+			</div>
+		</div>
+	
+						
+<!-- Revolver Maps -->
+<script type="text/javascript" src="TUTORIAL_files/r.js"></script><script type="text/javascript">rm_f1st('0','250','true','true','ffffff','2Xs30LK1Dvq','false','fff600');</script><object data="TUTORIAL_files/g.swf" type="application/x-shockwave-flash" id="rm_3a3sZq" height="250" width="250"><param name="movie" value="http://rc.revolvermaps.com/f/g.swf"><param name="allowNetworking" value="all"><param name="allowScriptAccess" value="always"><param name="wmode" value="window"><param name="flashvars" value="m=0&amp;n=true&amp;b=ffffff&amp;r=true&amp;i=2Xs30LK1Dvq&amp;v=false&amp;c=fff600&amp;s=250"></object><noscript><applet codebase="http://rc.revolvermaps.com/j" code="core.RE" width="250" height="250" archive="g.jar"><param name="cabbase" value="g.cab" /><param name="r" value="true" /><param name="n" value="true" /><param name="i" value="2Xs30LK1Dvq" /><param name="m" value="0" /><param name="s" value="250" /><param name="c" value="fff600" /><param name="v" value="false" /><param name="b" value="ffffff" /><param name="rfc" value="true" /></applet></noscript>
+
+
+						</div>
+
+												<div id="maincolumn">
+													
+							<table class="nopad">
+								<tbody><tr valign="top">
+									<td>
+										<table class="contentpaneopen">
+<tbody><tr>
+				
+				<td class="buttonheading" align="right" width="100%">
+		<a href="http://www.dave-auld.net/index.php?view=article&amp;catid=53%3Aarduino-input-output-basics&amp;id=95%3Aarduino-digital-out-lcd-display&amp;tmpl=component&amp;print=1&amp;layout=default&amp;page=&amp;option=com_content&amp;Itemid=107" title="Print" onclick="window.open(this.href,'win2','status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=640,height=480,directories=no,location=no'); return false;" rel="nofollow"><img src="TUTORIAL_files/printButton.png" alt="Print"></a>		</td>
+		
+				<td class="buttonheading" align="right" width="100%">
+		<a href="http://www.dave-auld.net/index.php?option=com_mailto&amp;tmpl=component&amp;link=e7b48d027de703298bf519565d44623b162adde4" title="E-mail" onclick="window.open(this.href,'win2','width=400,height=350,menubar=yes,resizable=yes'); return false;"><img src="TUTORIAL_files/emailButton.png" alt="E-mail"></a>		</td>
+					</tr>
+</tbody></table>
+
+<form method="post" action="http://www.dave-auld.net/index.php?option=com_content&amp;view=article&amp;id=95:arduino-digital-out-lcd-display&amp;catid=53:arduino-input-output-basics&amp;Itemid=107"><span class="content_rating">User Rating:<img src="TUTORIAL_files/rating_star.png" alt=""><img src="TUTORIAL_files/rating_star.png" alt=""><img src="TUTORIAL_files/rating_star.png" alt=""><img src="TUTORIAL_files/rating_star.png" alt=""><img src="TUTORIAL_files/rating_star_blank.png" alt="">&nbsp;/&nbsp;4</span>
+<br>
+<span class="content_vote">Poor<input alt="vote 1 star" name="user_rating" value="1" type="radio"><input alt="vote 2 star" name="user_rating" value="2" type="radio"><input alt="vote 3 star" name="user_rating" value="3" type="radio"><input alt="vote 4 star" name="user_rating" value="4" type="radio"><input alt="vote 5 star" name="user_rating" value="5" checked="checked" type="radio">Best&nbsp;<input class="button" name="submit_vote" value="Rate" type="submit"><input name="task" value="vote" type="hidden"><input name="option" value="com_content" type="hidden"><input name="cid" value="95" type="hidden"><input name="url" value="http://www.dave-auld.net/index.php?option=com_content&amp;view=article&amp;id=95:arduino-digital-out-lcd-display&amp;catid=53:arduino-input-output-basics&amp;Itemid=107" type="hidden"></span></form><table class="contentpaneopen">
+<tbody><tr>
+	<td>
+				<span>
+							<a href="http://www.dave-auld.net/index.php?option=com_content&amp;view=section&amp;id=12&amp;Itemid=107">						Arduino							</a>											 - 					</span>
+						<span>
+							<a href="http://www.dave-auld.net/index.php?option=com_content&amp;view=category&amp;id=53:arduino-input-output-basics&amp;Itemid=107">						Arduino - Input / Output Basics							</a>					</span>
+			</td>
+</tr>
+<tr>
+	<td valign="top">
+		<span class="small">
+			Written by Dave Auld		</span>
+		&nbsp;&nbsp;
+	</td>
+</tr>
+
+<tr>
+	<td class="createdate" valign="top">
+		Friday, 16 October 2009 09:00	</td>
+</tr>
+
+
+<tr>
+<td valign="top">
+<h3>Arduino Basic Input Output Circuits</h3>
+<h4>Digital Out&nbsp;-&nbsp;16x2 LCD Display</h4>
+<p>This example is a very straight forward example of interfacing an LCD
+ display with the Arduinio. The Arduino IDE environment (Release 17 at 
+time of writing) includes a number of pre-written code examples to use 
+the LCD as well as having a pre-built library allowing very easy code 
+writing for your own projects.</p>
+<p>&nbsp;</p>
+<p>Again my specific hardware is the Arduino Duemilanove platform, but the concept is the same regardless of the exact platform.</p>
+<p>&nbsp;</p>
+<p>Before continuing make sure you have read and understand the warning notice <a target="_blank" href="http://www.dave-auld.net/index.php?option=com_content&amp;view=article&amp;id=93&amp;catid=52&amp;Itemid=107" title="Warning Notice">here</a>.</p>
+<p>&nbsp;</p>
+<p>Hardware Requirements;</p>
+<p>1x Arduino</p>
+<p>1x BC1602A LCD</p>
+<p>1x 10kOhm Potentiometer</p>
+<p>&nbsp;</p>
+<p>This circuit&nbsp;diagram for this example&nbsp;is shown below;</p>
+<p><a class="modal thumbnail zoomin-cur" style="" href="http://www.dave-auld.net/images/stories/Arduino/BasicIO/DigitalOut-LCD_Display.jpg" rel="{handler: 'image', marginImage: {x: 50, y: 50}}"><img src="TUTORIAL_files/250x173-images-stories-Arduino-BasicIO-DigitalOut-LCD_Displa.jpg" alt="DigitalOut-LCD_Display" height="173" width="250"></a></p>
+<p>LCD Pin 1 is the ground</p>
+<p>LCD Pin 2 is 5v supply</p>
+<p>LCD Pin&nbsp;3 is used to control the contrast of the display. This is achieved using the 10kOhm potentiometer.</p>
+<p>LCD Pin 5 is Read/Write with Write being active LOW, this is tied to 
+ground to allow writing of data to the LCD from the Arduino.</p>
+<p>LCD Pins 15&amp;16 are for the LCD Backlight.</p>
+<p>The other pins used are control pins and data pins, these are connected to the Arduino and controlled by the Arduino.</p>
+<p>&nbsp;</p>
+<p>You could easily extend this example by controlling the backlight and the contrast using the Arduino.</p>
+<p>&nbsp;</p>
+<p>As stated at the top of the Arduino, a number of code examples are 
+provided with the IDE, upload these to the Arduino to test you display.</p>
+<p>Alternatively, upload the following code example to the Arduino;</p>
+<p>
+</p><pre><script type="text/javascript">
+	SyntaxHighlighter.config.clipboardSwf = "http://www.dave-auld.net/plugins/content/codecitation/scripts/clipboard.swf";
+	SyntaxHighlighter.defaults["auto-links"] = true;
+	SyntaxHighlighter.defaults["collapse"] = false;
+	SyntaxHighlighter.defaults["gutter"] = true;
+	SyntaxHighlighter.defaults["smart-tabs"] = true;
+	SyntaxHighlighter.defaults["tab-size"] = 4;
+	SyntaxHighlighter.defaults["toolbar"] = true;
+	SyntaxHighlighter.defaults["wrap-lines"] = true;	
+	SyntaxHighlighter.all();
+</script><div style="overflow: hidden; display: block; height: auto; width: inherit;"><div class="syntaxhighlighter " id="highlighter_713586"><div class="bar                                                                                                                               show"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_713586_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_713586" menu="false" src="TUTORIAL_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><code class="number">01.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="comments">/*</code></span></span></div><div class="line alt2"><code class="number">02.</code><span class="content"><code class="spaces">&nbsp;</code><span class="block" style="margin-left: 7px !important;"><code class="comments">LiquidCrystal Display Example</code></span></span></div><div class="line alt1"><code class="number">03.</code><span class="content"><code class="spaces">&nbsp;</code><span class="block" style="margin-left: 7px !important;">&nbsp;</span></span></div><div class="line alt2"><code class="number">04.</code><span class="content"><code class="spaces">&nbsp;</code><span class="block" style="margin-left: 7px !important;"><code class="comments">Library originally added 18 Apr 2008</code></span></span></div><div class="line alt1"><code class="number">05.</code><span class="content"><code class="spaces">&nbsp;</code><span class="block" style="margin-left: 7px !important;"><code class="comments">by David A. Mellis</code></span></span></div><div class="line alt2"><code class="number">06.</code><span class="content"><code class="spaces">&nbsp;</code><span class="block" style="margin-left: 7px !important;"><code class="comments">library modified 5 Jul 2009</code></span></span></div><div class="line alt1"><code class="number">07.</code><span class="content"><code class="spaces">&nbsp;</code><span class="block" style="margin-left: 7px !important;"><code class="comments">by Limor Fried (&lt;a href="<a href="http://www.ladyada.net/">http://www.ladyada.net</a>"&gt;<a href="http://www.ladyada.net%3C/">http://www.ladyada.net&lt;</a>;/a&gt;)</code></span></span></div><div class="line alt2"><code class="number">08.</code><span class="content"><code class="spaces">&nbsp;</code><span class="block" style="margin-left: 7px !important;">&nbsp;</span></span></div><div class="line alt1"><code class="number">09.</code><span class="content"><code class="spaces">&nbsp;</code><span class="block" style="margin-left: 7px !important;"><code class="comments">This example will write a number of different outputs to the LCD display</code></span></span></div><div class="line alt2"><code class="number">10.</code><span class="content"><code class="spaces">&nbsp;</code><span class="block" style="margin-left: 7px !important;">&nbsp;</span></span></div><div class="line alt1"><code class="number">11.</code><span class="content"><code class="spaces">&nbsp;</code><span class="block" style="margin-left: 7px !important;"><code class="comments">Author: David M. Auld</code></span></span></div><div class="line alt2"><code class="number">12.</code><span class="content"><code class="spaces">&nbsp;</code><span class="block" style="margin-left: 7px !important;"><code class="comments">Date: 16th October 2009</code></span></span></div><div class="line alt1"><code class="number">13.</code><span class="content"><code class="spaces">&nbsp;</code><span class="block" style="margin-left: 7px !important;">&nbsp;</span></span></div><div class="line alt2"><code class="number">14.</code><span class="content"><code class="spaces">&nbsp;</code><span class="block" style="margin-left: 7px !important;"><code class="comments">*/</code></span></span></div><div class="line alt1"><code class="number">15.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="comments">// include the library code:</code></span></span></div><div class="line alt2"><code class="number">16.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="preprocessor">#include </code></span></span></div><div class="line alt1"><code class="number">17.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="comments">// initialize the library with the numbers of the interface pins</code></span></span></div><div class="line alt2"><code class="number">18.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">LiquidCrystal lcd(12, 11, 5, 4, 3, 2);</code></span></span></div><div class="line alt1"><code class="number">19.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="keyword bold">void</code> <code class="plain">setup()</code></span></span></div><div class="line alt2"><code class="number">20.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">21.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="comments">// set up the LCD's number of rows and columns: </code></span></span></div><div class="line alt2"><code class="number">22.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.begin(16, 2);</code></span></span></div><div class="line alt1"><code class="number">23.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="comments">// Print a message to the LCD.</code></span></span></div><div class="line alt2"><code class="number">24.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.print(</code><code class="string">"Arduino"</code><code class="plain">);</code></span></span></div><div class="line alt1"><code class="number">25.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.setCursor(0,1);</code></span></span></div><div class="line alt2"><code class="number">26.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.print(</code><code class="string">"LCD Example."</code><code class="plain">);</code></span></span></div><div class="line alt1"><code class="number">27.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">delay(3000);</code></span></span></div><div class="line alt2"><code class="number">28.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.clear();</code></span></span></div><div class="line alt1"><code class="number">29.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.print(</code><code class="string">"More coming"</code><code class="plain">);</code></span></span></div><div class="line alt2"><code class="number">30.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.setCursor(0,1);</code></span></span></div><div class="line alt1"><code class="number">31.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.print(</code><code class="string">"right up."</code><code class="plain">);</code></span></span></div><div class="line alt2"><code class="number">32.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">delay(3000);</code></span></span></div><div class="line alt1"><code class="number">33.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.clear();</code></span></span></div><div class="line alt2"><code class="number">34.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">}</code></span></span></div><div class="line alt1"><code class="number">35.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="keyword bold">void</code> <code class="plain">loop()</code></span></span></div><div class="line alt2"><code class="number">36.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">37.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="comments">// Print a checker board pattern.</code></span></span></div><div class="line alt2"><code class="number">38.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.clear();</code></span></span></div><div class="line alt1"><code class="number">39.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.print(</code><code class="string">"Checker Board"</code><code class="plain">);</code></span></span></div><div class="line alt2"><code class="number">40.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">delay(2000);</code></span></span></div><div class="line alt1"><code class="number">41.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.clear();</code></span></span></div><div class="line alt2"><code class="number">42.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="keyword bold">for</code> <code class="plain">(</code><code class="color1 bold">int</code> <code class="plain">c = 0; c&lt;17; c+=2)</code></span></span></div><div class="line alt1"><code class="number">43.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">{</code></span></span></div><div class="line alt2"><code class="number">44.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">lcd.setCursor(c,0); </code></span></span></div><div class="line alt1"><code class="number">45.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">lcd.print(</code><code class="color1 bold">char</code><code class="plain">(255));</code></span></span></div><div class="line alt2"><code class="number">46.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">lcd.setCursor(c+1,1); </code></span></span></div><div class="line alt1"><code class="number">47.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">lcd.print(</code><code class="color1 bold">char</code><code class="plain">(255));</code></span></span></div><div class="line alt2"><code class="number">48.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">}</code></span></span></div><div class="line alt1"><code class="number">49.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">delay(2000); </code></span></span></div><div class="line alt2"><code class="number">50.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.clear();</code></span></span></div><div class="line alt1"><code class="number">51.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.print(</code><code class="string">"Next Example"</code><code class="plain">);</code></span></span></div><div class="line alt2"><code class="number">52.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.setCursor(0,1);</code></span></span></div><div class="line alt1"><code class="number">53.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.print(</code><code class="string">"Scrolling Board"</code><code class="plain">);</code></span></span></div><div class="line alt2"><code class="number">54.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">delay(2000);</code></span></span></div><div class="line alt1"><code class="number">55.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">delay(2000);</code></span></span></div><div class="line alt2"><code class="number">56.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.clear();</code></span></span></div><div class="line alt1"><code class="number">57.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="keyword bold">for</code> <code class="plain">(</code><code class="color1 bold">int</code> <code class="plain">c = 0; c&lt;40; c+=2)</code></span></span></div><div class="line alt2"><code class="number">58.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">59.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">lcd.setCursor(c,0); </code></span></span></div><div class="line alt2"><code class="number">60.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">lcd.print(</code><code class="color1 bold">char</code><code class="plain">(255));</code></span></span></div><div class="line alt1"><code class="number">61.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">lcd.setCursor(c+1,1); </code></span></span></div><div class="line alt2"><code class="number">62.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">lcd.print(</code><code class="color1 bold">char</code><code class="plain">(255));</code></span></span></div><div class="line alt1"><code class="number">63.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">}</code></span></span></div><div class="line alt2"><code class="number">64.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="keyword bold">for</code> <code class="plain">(</code><code class="color1 bold">int</code> <code class="plain">s = 0; s &lt; 50; s++)</code></span></span></div><div class="line alt1"><code class="number">65.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">{</code></span></span></div><div class="line alt2"><code class="number">66.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">lcd.scrollDisplayLeft();</code></span></span></div><div class="line alt1"><code class="number">67.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">delay(100);</code></span></span></div><div class="line alt2"><code class="number">68.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">}</code></span></span></div><div class="line alt1"><code class="number">69.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.clear();</code></span></span></div><div class="line alt2"><code class="number">70.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.print(</code><code class="string">"Time to make your own examples!"</code><code class="plain">);</code></span></span></div><div class="line alt1"><code class="number">71.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="keyword bold">for</code> <code class="plain">(</code><code class="color1 bold">int</code> <code class="plain">s = 0; s &lt; 50; s++);</code></span></span></div><div class="line alt2"><code class="number">72.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">{</code></span></span></div><div class="line alt1"><code class="number">73.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">lcd.scrollDisplayLeft();</code></span></span></div><div class="line alt2"><code class="number">74.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">delay(300);&nbsp; </code></span></span></div><div class="line alt1"><code class="number">75.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">}</code></span></span></div><div class="line alt2"><code class="number">76.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.clear();</code></span></span></div><div class="line alt1"><code class="number">77.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">lcd.print(</code><code class="string">"Going back to the start of the routine!"</code><code class="plain">);</code></span></span></div><div class="line alt2"><code class="number">78.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="keyword bold">for</code> <code class="plain">(</code><code class="color1 bold">int</code> <code class="plain">s=0; s &lt; 50; s++)</code></span></span></div><div class="line alt1"><code class="number">79.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">{</code></span></span></div><div class="line alt2"><code class="number">80.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">lcd.scrollDisplayLeft();</code></span></span></div><div class="line alt1"><code class="number">81.</code><span class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><span class="block" style="margin-left: 28px !important;"><code class="plain">delay(300);&nbsp; </code></span></span></div><div class="line alt2"><code class="number">82.</code><span class="content"><code class="spaces">&nbsp;&nbsp;</code><span class="block" style="margin-left: 14px !important;"><code class="plain">}</code></span></span></div><div class="line alt1"><code class="number">83.</code><span class="content"><span class="block" style="margin-left: 0px !important;"><code class="plain">}</code></span></span></div></div></div></div></pre>
+<pre></pre>
+
+</td>
+</tr>
+
+<tr>
+	<td class="modifydate">
+		Last Updated on Saturday, 06 February 2010 15:45	</td>
+</tr>
+</tbody></table>
+<span class="article_separator">&nbsp;</span>
+<script type="text/javascript">
+var jcomments=new JComments(95, 'com_content','http://dave-auld.net/index.php?option=com_jcomments&amp;tmpl=component');
+jcomments.setList('comments-list');
+</script>
+<div id="jc">
+<div id="comments"><div class="comments-list" id="comments-list-0"></div>
+</div>
+<h4>Add comment</h4>
+<a id="addcomments" href="#addcomments"></a>
+<form id="comments-form" name="comments-form" action="javascript:void(null);">
+<div class="comments-policy">The site owners has the right to edit/delete or use the comment in any way for which they choose.<br>The comments may be moderated before going public.</div>
+<p>
+	<input id="comments-form-name" name="name" maxlength="20" size="22" tabindex="1" type="text">
+	<label for="comments-form-name">Name (required)</label>
+</p>
+<p>
+	<input id="comments-form-email" name="email" size="22" tabindex="2" type="text">
+	<label for="comments-form-email">E-mail (required)</label>
+</p>
+<p>
+	<input id="comments-form-homepage" name="homepage" size="22" tabindex="3" type="text">
+	<label for="comments-form-homepage">Website</label>
+</p>
+<p>
+	<div class="smiles"><img class="smile" alt=":D" src="TUTORIAL_files/laugh.gif"><img class="smile" alt=":lol:" src="TUTORIAL_files/lol.gif"><img class="smile" alt=":-)" src="TUTORIAL_files/smile.gif"><img class="smile" alt=";-)" src="TUTORIAL_files/wink.gif"><img class="smile" alt="8)" src="TUTORIAL_files/cool.gif"><img class="smile" alt=":-|" src="TUTORIAL_files/normal.gif"><img class="smile" alt=":-*" src="TUTORIAL_files/whistling.gif"><img class="smile" alt=":oops:" src="TUTORIAL_files/redface.gif"><img class="smile" alt=":sad:" src="TUTORIAL_files/sad.gif"><img class="smile" alt=":cry:" src="TUTORIAL_files/cry.gif"><img class="smile" alt=":o" src="TUTORIAL_files/surprised.gif"><img class="smile" alt=":-?" src="TUTORIAL_files/confused.gif"><img class="smile" alt=":-x" src="TUTORIAL_files/sick.gif"><img class="smile" alt=":eek:" src="TUTORIAL_files/shocked.gif"><img class="smile" alt=":zzz" src="TUTORIAL_files/sleeping.gif"><img class="smile" alt=":P" src="TUTORIAL_files/tongue.gif"><img class="smile" alt=":roll:" src="TUTORIAL_files/rolleyes.gif"><img class="smile" alt=":sigh:" src="TUTORIAL_files/unsure.gif"></div><textarea id="comments-form-comment" name="comment" cols="65" rows="8" tabindex="5"></textarea><div class="grippie"><span class="counter"> <span>1000</span>  symbols left</span></div>
+</p>
+<p>
+	<input class="checkbox" id="comments-form-subscribe" name="subscribe" value="1" tabindex="5" type="checkbox">
+	<label for="comments-form-subscribe">Notify me of follow-up comments</label><br>
+</p>
+<p>
+	<img class="captcha" onclick="jcomments.clear('captcha');" id="comments-form-captcha-image" name="captcha-image" src="TUTORIAL_files/index.jpg" alt="Security code" height="60" width="120"><br>
+	<span class="captcha" onclick="jcomments.clear('captcha');">Refresh</span><br>
+	<input class="captcha" id="comments-form-captcha" name="captcha-refid" size="5" tabindex="6" type="text"><br>
+</p>
+<div id="comments-form-buttons">
+	<div class="btn" id="comments-form-send"><div><a href="#" tabindex="7" onclick="jcomments.saveComment();return false;" title="Send (Ctrl+Enter)">Send</a></div></div>
+	<div class="btn" id="comments-form-cancel" style="display:none;"><div><a href="#" tabindex="8" onclick="return false;" title="Cancel">Cancel</a></div></div>
+	<div style="clear:both;"></div>
+</div>
+	<input name="object_id" value="95" type="hidden">
+	<input name="object_group" value="com_content" type="hidden">
+</form>
+
+<script type="text/javascript">
+function JCommentsInitializeForm()
+{
+	var jcEditor = new JCommentsEditor('comments-form-comment', true);
+	jcEditor.initSmiles('http://www.dave-auld.net/components/com_jcomments/images/smiles');
+	jcEditor.addSmile(':D','laugh.gif');
+	jcEditor.addSmile(':lol:','lol.gif');
+	jcEditor.addSmile(':-)','smile.gif');
+	jcEditor.addSmile(';-)','wink.gif');
+	jcEditor.addSmile('8)','cool.gif');
+	jcEditor.addSmile(':-|','normal.gif');
+	jcEditor.addSmile(':-*','whistling.gif');
+	jcEditor.addSmile(':oops:','redface.gif');
+	jcEditor.addSmile(':sad:','sad.gif');
+	jcEditor.addSmile(':cry:','cry.gif');
+	jcEditor.addSmile(':o','surprised.gif');
+	jcEditor.addSmile(':-?','confused.gif');
+	jcEditor.addSmile(':-x','sick.gif');
+	jcEditor.addSmile(':eek:','shocked.gif');
+	jcEditor.addSmile(':zzz','sleeping.gif');
+	jcEditor.addSmile(':P','tongue.gif');
+	jcEditor.addSmile(':roll:','rolleyes.gif');
+	jcEditor.addSmile(':sigh:','unsure.gif');
+	jcEditor.addCounter(1000, '', ' symbols left', 'counter');
+	jcomments.setForm(new JCommentsForm('comments-form', jcEditor));
+}
+setTimeout(JCommentsInitializeForm, 100);
+</script>
+<div id="comments-footer" align="center"><a href="http://www.joomlatune.com/" title="JComments" target="_blank">JComments</a></div>
+<script type="text/javascript">
+jcomments.setAntiCache(1,0,0);
+</script> 
+</div>
+												<div class="moduletable">
+					<div class="bannergroup">
+
+<div class="banneritem"><!-- Begin PayPal Logo --><a href="https://www.paypal.com/uk/mrb/pal=YQMNNHECA3AQG" target="_blank"><img src="TUTORIAL_files/paypal_mrb_banner.gif" alt="Sign up for PayPal and start accepting credit card payments instantly." border="0"></a><!-- End PayPal Logo --><div class="clr"></div>
+	</div>
+
+</div>		</div>
+			<div class="moduletable">
+					<div>Copyright © 2012 Dave-Auld.net. All Rights Reserved.</div>
+<div><a href="http://www.joomla.org/">Joomla!</a> is Free Software released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU/GPL License.</a></div>		</div>
+	
+									</td>
+																			<td class="greyline">&nbsp;</td>
+										<td width="170">
+													<div class="moduletable">
+					
+<div style="text-align: center;">
+<a href="http://www.facebook.com/dave.m.auld/" target="_blank" title="Visit my Facebook page"><img src="TUTORIAL_files/find-us-on-facebook-3.png" alt="Find us on Facebook"></a>
+</div>		</div>
+			<div class="moduletable">
+					<div class="bannergroup">
+
+<div class="banneritem"><script type="text/javascript"><!--
+google_ad_client = "pub-4762422583985729";
+/* 160x600, created 22/07/09 */
+google_ad_slot = "6139654891";
+google_ad_width = 160;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript" src="TUTORIAL_files/show_ads.js">
+</script><div class="clr"></div>
+	</div>
+
+</div>		</div>
+	
+										</td>
+																	</tr>
+							</tbody></table>
+
+						</div>
+						<div class="clr"></div>
+					</div>
+					<div class="clr"></div>
+				</div>
+
+				<div id="whitebox_b">
+					<div id="whitebox_bl">
+						<div id="whitebox_br"></div>
+					</div>
+				</div>
+			</div>
+
+			<div id="footerspacer"></div>
+		</div>
+
+		<div id="footer">
+			<div id="footer_l">
+				<div id="footer_r">
+					<p id="syndicate">
+						<a href="http://www.dave-auld.net/index.php?option=com_jcomments&amp;task=rss&amp;object_id=95&amp;object_group=com_content&amp;tmpl=component">
+	<img src="TUTORIAL_files/livemarks.png" alt="feed-image"> <span>Feed Entries</span></a>
+					</p>
+					<p id="power_by">
+	 				 	Powered by <a href="http://www.joomla.org/">Joomla!</a>.
+						Valid <a href="http://validator.w3.org/check/referer">XHTML</a> and <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+ We have&nbsp;93 guests&nbsp;online	<script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script src="TUTORIAL_files/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    try {
+    var pageTracker = _gat._getTracker("UA-8312359-1");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+
+
+
+<div style="display: none; z-index: 65555; position: fixed; top: 0px; left: 0px; visibility: hidden; opacity: 0;" id="sbox-overlay"></div><div style="display: none; z-index: 65557; position: fixed; top: 50%; left: 50%;" id="sbox-window"><a href="#" id="sbox-btn-close"></a><div style="visibility: hidden; opacity: 0;" id="sbox-content"></div></div></body></html>

@@ -1,0 +1,25 @@
+Mon Jan 21 14:42:33 2019 - 20: Difference: 2877.30
+Mon Jan 21 14:42:33 2019 - 20: Centimeters: 327.89
+Mon Jan 21 14:42:33 2019 - 15: Inches: 127.35
+Mon Jan 21 14:42:34 2019 - 20: Difference: 2877.61
+Mon Jan 21 14:42:34 2019 - 21: Centimeters: 3205.50
+Mon Jan 21 14:42:34 2019 - 16: Inches: 1245.00
+Mon Jan 21 14:42:35 2019 - 20: Difference: 2877.49
+Mon Jan 21 14:42:35 2019 - 20: Centimeters: 328.01
+Mon Jan 21 14:42:35 2019 - 15: Inches: 127.40
+Mon Jan 21 14:42:37 2019 - 20: Difference: 2872.81
+Mon Jan 21 14:42:37 2019 - 21: Centimeters: 3200.82
+Mon Jan 21 14:42:37 2019 - 16: Inches: 1243.18
+Mon Jan 21 14:42:38 2019 - 17: Difference: 4.50
+Mon Jan 21 14:42:38 2019 - 21: Centimeters: 3205.31
+Mon Jan 21 14:42:38 2019 - 16: Inches: 1244.93
+Mon Jan 21 14:42:41 2019 - 17: Difference: 4.48
+Mon Jan 21 14:42:41 2019 - 21: Centimeters: 3200.84
+Mon Jan 21 14:42:41 2019 - 16: Inches: 1243.19
+Mon Jan 21 14:42:42 2019 - 17: Difference: 4.10
+Mon Jan 21 14:42:42 2019 - 21: Centimeters: 3204.94
+Mon Jan 21 14:42:42 2019 - 16: Inches: 1244.78
+Mon Jan 21 14:42:44 2019 - 17: Difference: 4.01
+Mon Jan 21 14:42:44 2019 - 21: Centimeters: 3200.92
+Mon Jan 21 14:42:44 2019 - 16: Inches: 1243.22
+Mon Jan 21 14:42:45 2019 - 2: z
