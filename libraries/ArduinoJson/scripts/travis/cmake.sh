@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-#!/bin/sh -eux
-
-URL=https://cmake.org/files/v3.4/cmake-3.4.3-Linux-x86_64.tar.gz
-
-curl -sS $URL | tar xz -C /tmp --strip 1
-
-/tmp/bin/cmake -DCMAKE_CXX_COMPILER=$CMAKE_CXX_COMPILER .
-make 
-make test
-=======
 #!/bin/sh -ex
 
 if [ $(uname) = 'Darwin' ]; then
@@ -39,4 +28,3 @@ fi
 $CMAKE .
 $CMAKE --build .
 $CTEST --output-on-failure .
->>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f

@@ -1,8 +1,6 @@
 ArduinoJson: change log
 =======================
 
-<<<<<<< HEAD
-=======
 v5.11.1
 -------
 
@@ -204,7 +202,6 @@ v5.6.5
 
 * `as<char*>()` now returns `true` when input is `null` (issue #330)
 
->>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f
 v5.6.4
 ------
 
@@ -290,12 +287,8 @@ v5.0.7
 * Made library easier to use from a CMake project: simply `add_subdirectory(ArduinoJson/src)`
 * Changed `String` to be a `typedef` of `std::string` (issues #142 and #161)
 
-<<<<<<< HEAD
-**BREAKING CHANGES**:
-=======
 ### BREAKING CHANGES :warning:
 
->>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f
 - `JsonVariant(true).as<String>()` now returns `"true"` instead of `"1"`
 - `JsonVariant(false).as<String>()` now returns `"false"` instead of `"0"`
 
@@ -351,12 +344,8 @@ v5.0.0
 * Redesigned `JsonVariant` to leverage converting constructors instead of assignment operators (issue #66)
 * Switched to new the library layout (requires Arduino 1.0.6 or above)
 
-<<<<<<< HEAD
-**BREAKING CHANGES**:
-=======
 ### BREAKING CHANGES :warning:
 
->>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f
 - `JsonObject::add()` was renamed to `set()`
 - `JsonArray::at()` and `JsonObject::at()` were renamed to `get()`
 - Number of digits of floating point value are now set with `double_with_n_digits()`
