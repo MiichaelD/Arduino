@@ -1,13 +1,24 @@
+<<<<<<< HEAD
 Arduino JSON library
+=======
+ArduinoJson - C++ JSON library for IoT
+>>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f
 ====================
 
 [![Build status](https://ci.appveyor.com/api/projects/status/m7s53wav1l0abssg/branch/master?svg=true)](https://ci.appveyor.com/project/bblanchon/arduinojson/branch/master) [![Build Status](https://travis-ci.org/bblanchon/ArduinoJson.svg?branch=master)](https://travis-ci.org/bblanchon/ArduinoJson) [![Coverage Status](https://img.shields.io/coveralls/bblanchon/ArduinoJson.svg)](https://coveralls.io/r/bblanchon/ArduinoJson?branch=master) [![Star this project](http://githubbadges.com/star.svg?user=bblanchon&repo=ArduinoJson&style=flat&color=fff&background=007ec6)](https://github.com/bblanchon/ArduinoJson)
 
 *An elegant and efficient JSON library for embedded systems.*
 
+<<<<<<< HEAD
 It's designed to have the most intuitive API, the smallest footprint and works without any allocation on the heap (no malloc).
 
 It has been written with Arduino in mind, but it isn't linked to Arduino libraries so you can use this library in any other C++ project.
+=======
+It's designed to have the most intuitive API, the smallest footprint and is able to work without any allocation on the heap (no malloc).
+
+It has been written with Arduino in mind, but it isn't linked to Arduino libraries so you can use this library in any other C++ project.
+For instance, it supports Aduino's `String` and `Stream`, but also `std::string`, `std::istream` and `std::ostream`.
+>>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f
 
 Features
 --------
@@ -26,6 +37,7 @@ Features
 Works on
 --------
 
+<<<<<<< HEAD
 * All Arduino boards (Uno, Due, Mini, Micro, Yun...)
 * ESP8266
 * Teensy
@@ -36,6 +48,18 @@ Works on
 * Computers (Windows, Linux, OSX...)
 
 See [FAQ: Compatibility issues](https://github.com/bblanchon/ArduinoJson/wiki/Compatibility-issues)
+=======
+* Arduino boards: Uno, Due, Mini, Micro, Yun...
+* ESP8266, ESP32
+* Teensy
+* RedBearLab boards (BLE Nano...)
+* Intel Edison and Galileo
+* WeMos boards: D1...
+* Computers: Windows, Linux, OSX...
+* PlatformIO
+* Particle
+* Energia
+>>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f
 
 Quick start
 -----------
@@ -55,6 +79,13 @@ double latitude    = root["data"][0];
 double longitude   = root["data"][1];
 ```
 
+<<<<<<< HEAD
+=======
+[See JsonParserExample.ino](examples/JsonParserExample/JsonParserExample.ino)
+
+Use [ArduinoJson Assistant](https://bblanchon.github.io/ArduinoJson/assistant/) to compute the buffer size.
+
+>>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f
 #### Encoding / Generating
 
 ```c++
@@ -65,14 +96,20 @@ root["sensor"] = "gps";
 root["time"] = 1351824120;
 
 JsonArray& data = root.createNestedArray("data");
+<<<<<<< HEAD
 data.add(48.756080, 6);  // 6 is the number of decimals to print
 data.add(2.302038, 6);   // if not specified, 2 digits are printed
+=======
+data.add(48.756080);
+data.add(2.302038);
+>>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f
 
 root.printTo(Serial);
 // This prints:
 // {"sensor":"gps","time":1351824120,"data":[48.756080,2.302038]}
 ```
 
+<<<<<<< HEAD
 
 Documentation
 -------------
@@ -105,6 +142,20 @@ From GitHub user `zacsketches`:
 
 [From Twitter user `@hemalchevli`](https://twitter.com/hemalchevli/status/715788439397011456):
 > ArduinoJson library should be used as a benchmark/reference for making libraries. Truly elegant.
+=======
+[See JsonGeneratorExample.ino](examples/JsonGeneratorExample/JsonGeneratorExample.ino)
+
+Use [ArduinoJson Assistant](https://bblanchon.github.io/ArduinoJson/assistant/) to compute the buffer size.
+
+
+Documentation
+-------------
+
+The documentation is available online in the [ArduinoJson Website](https://bblanchon.github.io/ArduinoJson/).
+
+The [ArduinoJson Assistant](https://bblanchon.github.io/ArduinoJson/assistant/) helps you get started with the library.
+
+>>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f
 
 Donators
 --------
@@ -124,6 +175,20 @@ Special thanks to the following persons and companies who made generous donation
 * Nick Koumaris <img alt='Greece' src='https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/assets/svg/1f1ec-1f1f7.svg' width='18' height='18'>
 * Jon Williams <img alt='USA' src='https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/assets/svg/1f1fa-1f1f8.svg' width='18' height='18'>
 * Kestutis Liaugminas <img alt='Lithuania' src='https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/assets/svg/1f1f1-1f1f9.svg' width='18' height='18'>
+<<<<<<< HEAD
+=======
+* Darlington Adibe <img alt='Nigeria' src='https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/assets/svg/1f1f3-1f1ec.svg' width='18' height='18'>
+* Yoeri Kroon <img alt='Netherlands' src='https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/assets/svg/1f1f3-1f1f1.svg' width='18' height='18'>
+* Andrew Melvin <img alt='United Kingdom' src='https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/assets/svg/1f1ec-1f1e7.svg' width='18' height='18'>
+* Doanh Luong <img alt ='Vietnam' src='https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/assets/svg/1f1fb-1f1f3.svg' width='18' height='18'>
+* Christoph Schmidt <img alt='Germany' src='https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/assets/svg/1f1e9-1f1ea.svg' width='18' height='18'>
+* OpenEVSE LLC <img alt='USA' src='https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/assets/svg/1f1fa-1f1f8.svg' width='18' height='18'>
+* Prokhoryatov Alexey <img alt='Russia' src='https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/assets/svg/1f1f7-1f1fa.svg' width='18' height='18'>
+* Google Inc. <img alt='USA' src='https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/assets/svg/1f1fa-1f1f8.svg' width='18' height='18'>
+* Charles Haynes <img alt='Australia' src='https://d1j8pt39hxlh3d.cloudfront.net/development/emojione/2.2/989/2546.svg' width='18' height='18'>
+* Charles Walker <img alt='USA' src='https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/assets/svg/1f1fa-1f1f8.svg' width='18' height='18'>
+
+>>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f
 
 ---
 

@@ -1,6 +1,7 @@
 // Sample Arduino Json Web Client
 // Downloads and parse http://jsonplaceholder.typicode.com/users/1
 //
+<<<<<<< HEAD
 // Copyright Benoit Blanchon 2014-2016
 // MIT License
 //
@@ -11,6 +12,18 @@
 #include <ArduinoJson.h>
 #include <SPI.h>
 #include <Ethernet.h>
+=======
+// Copyright Benoit Blanchon 2014-2017
+// MIT License
+//
+// Arduino JSON library
+// https://bblanchon.github.io/ArduinoJson/
+// If you like this project, please add a star!
+
+#include <ArduinoJson.h>
+#include <Ethernet.h>
+#include <SPI.h>
+>>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f
 
 EthernetClient client;
 
@@ -36,6 +49,7 @@ void setup() {
 void loop() {
   if (connect(server)) {
     if (sendRequest(server, resource) && skipResponseHeaders()) {
+<<<<<<< HEAD
       char response[MAX_CONTENT_SIZE];
       readReponseContent(response, sizeof(response));
 
@@ -46,6 +60,15 @@ void loop() {
     }
     disconnect();
   }
+=======
+      UserData userData;
+      if (readReponseContent(&userData)) {
+        printUserData(&userData);
+      }
+    }
+  }
+  disconnect();
+>>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f
   wait();
 }
 
@@ -87,9 +110,15 @@ bool sendRequest(const char* host, const char* resource) {
 
   client.print("GET ");
   client.print(resource);
+<<<<<<< HEAD
   client.println(" HTTP/1.1");
   client.print("Host: ");
   client.println(server);
+=======
+  client.println(" HTTP/1.0");
+  client.print("Host: ");
+  client.println(host);
+>>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f
   client.println("Connection: close");
   client.println();
 
@@ -111,6 +140,7 @@ bool skipResponseHeaders() {
   return ok;
 }
 
+<<<<<<< HEAD
 // Read the body of the response from the HTTP server
 void readReponseContent(char* content, size_t maxSize) {
   size_t length = client.readBytes(content, maxSize);
@@ -118,6 +148,8 @@ void readReponseContent(char* content, size_t maxSize) {
   Serial.println(content);
 }
 
+=======
+>>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f
 // Parse the JSON from the input string and extract the interesting values
 // Here is the JSON we need to parse
 // {
@@ -143,6 +175,7 @@ void readReponseContent(char* content, size_t maxSize) {
 //     "bs": "harness real-time e-markets"
 //   }
 // }
+<<<<<<< HEAD
 bool parseUserData(char* content, struct UserData* userData) {
   // Compute optimal size of the JSON buffer according to what we need to parse.
   // This is only required if you use StaticJsonBuffer.
@@ -158,6 +191,22 @@ bool parseUserData(char* content, struct UserData* userData) {
   // DynamicJsonBuffer jsonBuffer;
 
   JsonObject& root = jsonBuffer.parseObject(content);
+=======
+bool readReponseContent(struct UserData* userData) {
+  // Compute optimal size of the JSON buffer according to what we need to parse.
+  // See https://bblanchon.github.io/ArduinoJson/assistant/
+  const size_t BUFFER_SIZE =
+      JSON_OBJECT_SIZE(8)    // the root object has 8 elements
+      + JSON_OBJECT_SIZE(5)  // the "address" object has 5 elements
+      + JSON_OBJECT_SIZE(2)  // the "geo" object has 2 elements
+      + JSON_OBJECT_SIZE(3)  // the "company" object has 3 elements
+      + MAX_CONTENT_SIZE;    // additional space for strings
+
+  // Allocate a temporary memory pool
+  DynamicJsonBuffer jsonBuffer(BUFFER_SIZE);
+
+  JsonObject& root = jsonBuffer.parseObject(client);
+>>>>>>> a85ee8ecf3a469793e1c498c42d585f92528171f
 
   if (!root.success()) {
     Serial.println("JSON parsing failed!");
